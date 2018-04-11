@@ -57,7 +57,7 @@ class LibraryTest < Minitest::Test
 
     assert_instance_of Hash, dpl.find_by_author('Charlotte Bronte')
     assert_equal 2, dpl.find_by_author('Charlotte Bronte').size
-    expected = ['Jane Eyre', 'Villette']
+    expected = ["Villette", "Jane Eyre"]
     assert_equal expected, dpl.find_by_author('Charlotte Bronte').keys
   end
 
