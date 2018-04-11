@@ -29,4 +29,15 @@ class Library
     found = find_all_with_name(name)
     found.group_by(&:title)
   end
+
+  def find_all_with_date(date)
+    @books.find_all do |book|
+      book.publication_date.include?(date)
+    end
+  end
+
+  def find_by_publication_date(date)
+    found = find_all_with_date(date)
+    found.group_by(&:title)
+  end
 end
