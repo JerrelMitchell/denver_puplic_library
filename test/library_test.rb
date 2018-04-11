@@ -2,6 +2,7 @@ require './test/test_helper'
 require './lib/library'
 require './lib/author'
 
+# :nodoc:
 class LibraryTest < Minitest::Test
   attr_reader :dpl, :charlotte, :jane_eyre, :villette, :harper, :mockingbird
   def setup
@@ -58,5 +59,16 @@ class LibraryTest < Minitest::Test
     assert_equal 2, dpl.find_by_author('Charlotte Bronte').size
     expected = ['Jane Eyre', 'Villette']
     assert_equal expected, dpl.find_by_author('Charlotte Bronte').keys
+  end
+
+  def test_it_finds_book_by_date_returns_title_as_key_with_book_instance_value
+    dpl.add_to_collection(jane_eyre)
+    dpl.add_to_collection(mockingbird)
+    dpl.add_to_collection(villette)
+
+    assert_instance_of Hash, dpl.find_by_author('1960')
+    assert_equal 1, dpl.find_by_author('1960').size
+    expected = ['To Kill a Mockingbird']
+    assert_equal expected, dpl.find_by_author('1960').keys
   end
 end
