@@ -1,5 +1,6 @@
 require './test/test_helper'
 require './lib/author'
+
 class AuthorTest < Minitest::Test
   attr_reader :charlotte_bronte
   def setup
