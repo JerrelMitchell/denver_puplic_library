@@ -66,9 +66,9 @@ class LibraryTest < Minitest::Test
     dpl.add_to_collection(mockingbird)
     dpl.add_to_collection(villette)
 
-    assert_instance_of Hash, dpl.find_by_author('1960')
-    assert_equal 1, dpl.find_by_author('1960').size
+    assert_instance_of Hash, dpl.find_by_publication_date('1960')
+    assert_equal 1, dpl.find_by_publication_date('1960').size
     expected = ['To Kill a Mockingbird']
-    assert_equal expected, dpl.find_by_author('1960').keys
+    assert_equal expected, dpl.find_by_publication_date('1960').keys
   end
 end
