@@ -31,4 +31,21 @@ class LibraryTest < Minitest::Test
     dpl.add_to_collection(villette)
     assert_equal 3, dpl.books.count
   end
+
+  def test_it_can_check_collection_for_specified_book
+    dpl.add_to_collection(mockingbird)
+    assert dpl.include?('To Kill a Mockingbird')
+    refute dpl.include?("A Connecticut Yankee in King Arthur's Court")
+  end
+
+  def test_it_can_return_collection_of_books_ordered_by_author_last_name
+    dpl.add_to_collection(jane_eyre)
+    dpl.add_to_collection(mockingbird)
+    dpl.add_to_collection(villette)
+    assert_instance_of Array, dpl.card_catalgue
+    assert_equal 3, dpl.card_catalgue.count
+    assert_equal 'Bronte', dpl.card_catalgue[0].author_last_name
+    assert_equal 'Bronte', dpl.card_catalgue[1].author_last_name
+    assert_equal 'Lee',    dpl.card_catalgue[2].author_last_name
+  end
 end
