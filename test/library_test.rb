@@ -48,4 +48,15 @@ class LibraryTest < Minitest::Test
     assert_equal 'Bronte', dpl.card_catalgue[1].author_last_name
     assert_equal 'Lee',    dpl.card_catalgue[2].author_last_name
   end
+
+  def test_it_finds_book_by_author_returns_title_as_key_with_book_instance_value
+    dpl.add_to_collection(jane_eyre)
+    dpl.add_to_collection(mockingbird)
+    dpl.add_to_collection(villette)
+
+    assert_instance_of Hash, dpl.find_by_author('Charlotte Bronte')
+    assert_equal 2, dpl.find_by_author('Charlotte Bronte').size
+    expected = ['Jane Eyre', 'Villette']
+    assert_equal expected, dpl.find_by_author('Charlotte Bronte').keys
+  end
 end
